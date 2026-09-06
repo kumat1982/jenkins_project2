@@ -4,17 +4,7 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-
-            steps {
-
-                git branch: 'main',
-                url: 'https://github.com/USERNAME/git-docker-jenkins-project.git'
-
-            }
-
-        }
-
+     
         stage('Install Dependencies') {
 
             steps {
