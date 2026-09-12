@@ -6,26 +6,22 @@ pipeline {
 
      
         stage('Install Dependencies') {
-    agent {
-        docker { image 'python:3.11' }
-    }
     steps {
-        sh 'pip install -r requirements.txt'
+        sh '''
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+        '''
     }
 }
-
-        
-        stage('Run Tests') {
-
-            steps {
-
-                sh '''
-                pytest
-                '''
-
-            }
-
-        }
+stage('Run Tests') {
+    steps {
+        sh '''
+            . venv/bin/activate
+            pytest
+        '''
+    }
+}
 
         stage('Build Docker Image') {
 
